@@ -1,207 +1,185 @@
 ---
-base_model: mistralai/Mistral-7B-Instruct-v0.3
-library_name: peft
-pipeline_tag: text-generation
+language: es
+library_name: transformers
 tags:
-- base_model:adapter:mistralai/Mistral-7B-Instruct-v0.3
 - lora
-- transformers
+- peft
+- mistral
+- medical
+- medquad
+- causal-lm
+- text-generation
+license: apache-2.0
+pipeline_tag: text-generation
+base_model: mistralai/Mistral-7B-Instruct-v0.3
+datasets:
+- lavita/MedQuAD
 ---
 
-# Model Card for Model ID
+# MistralLoRA — MedQuAD (LoRA r=32)
 
-<!-- Provide a quick summary of what the model is/does. -->
+El modelo `MistralLoRA — MedQuAD (LoRA r=32)` corresponde a una versión afinada de `mistralai/Mistral-7B-Instruct-v0.3` utilizando el conjunto de datos médico `lavita/MedQuAD`.  
+El proceso de afinamiento aplicó la técnica `LoRA (Low-Rank Adaptation)` mediante `PEFT (Parameter-Efficient Fine-Tuning)` con cuantización `NF4 en 4 bits` implementada a través de `bitsandbytes`.  
+El objetivo principal consiste en generar respuestas médicas breves, coherentes y fundamentadas en fuentes verificables, manteniendo una relación eficiente entre costo computacional y calidad de generación.
 
+Este trabajo forma parte de la investigación documentada en:  
+*Medrano Cerdas, J. L. (2025). _MistralLoRA — MedQuAD (LoRA r=32): Afinamiento eficiente de parámetros para generación de texto médico._ Hugging Face Hub.*
 
+Disponible en: [https://huggingface.co/medranojl/MistralLoRAr32](https://huggingface.co/medranojl/MistralLoRAr32)
 
-## Model Details
 
-### Model Description
+## Detalles del modelo
 
-<!-- Provide a longer summary of what this model is. -->
+### Descripción general
+- Desarrollado por: José Luis Medrano Cerdas ([medranojl](https://huggingface.co/medranojl))  
+- Tipo de modelo: `Causal Language Model (AutoModelForCausalLM)`  
+- Idioma: Inglés  
+- Finetuning de: `mistralai/Mistral-7B-Instruct-v0.3`  
+- Licencia: Apache 2.0  
+- Frameworks: `Transformers`, `PEFT`, `bitsandbytes`  
+- Hardware utilizado: `NVIDIA A100 (40 GB VRAM)`  
+- Propósito: generación de texto médico verificable (Q&A)  
 
 
+## Resultados del entrenamiento
 
-- **Developed by:** [More Information Needed]
-- **Funded by [optional]:** [More Information Needed]
-- **Shared by [optional]:** [More Information Needed]
-- **Model type:** [More Information Needed]
-- **Language(s) (NLP):** [More Information Needed]
-- **License:** [More Information Needed]
-- **Finetuned from model [optional]:** [More Information Needed]
-
-### Model Sources [optional]
-
-<!-- Provide the basic links for the model. -->
-
-- **Repository:** [More Information Needed]
-- **Paper [optional]:** [More Information Needed]
-- **Demo [optional]:** [More Information Needed]
-
-## Uses
-
-<!-- Address questions around how the model is intended to be used, including the foreseeable users of the model and those affected by the model. -->
-
-### Direct Use
-
-<!-- This section is for the model use without fine-tuning or plugging into a larger ecosystem/app. -->
-
-[More Information Needed]
-
-### Downstream Use [optional]
-
-<!-- This section is for the model use when fine-tuned for a task, or when plugged into a larger ecosystem/app -->
-
-[More Information Needed]
-
-### Out-of-Scope Use
-
-<!-- This section addresses misuse, malicious use, and uses that the model will not work well for. -->
-
-[More Information Needed]
-
-## Bias, Risks, and Limitations
-
-<!-- This section is meant to convey both technical and sociotechnical limitations. -->
-
-[More Information Needed]
-
-### Recommendations
-
-<!-- This section is meant to convey recommendations with respect to the bias, risk, and technical limitations. -->
-
-Users (both direct and downstream) should be made aware of the risks, biases and limitations of the model. More information needed for further recommendations.
-
-## How to Get Started with the Model
-
-Use the code below to get started with the model.
-
-[More Information Needed]
-
-## Training Details
-
-### Training Data
-
-<!-- This should link to a Dataset Card, perhaps with a short stub of information on what the training data is all about as well as documentation related to data pre-processing or additional filtering. -->
-
-[More Information Needed]
-
-### Training Procedure
-
-<!-- This relates heavily to the Technical Specifications. Content here should link to that section when it is relevant to the training procedure. -->
-
-#### Preprocessing [optional]
-
-[More Information Needed]
-
-
-#### Training Hyperparameters
-
-- **Training regime:** [More Information Needed] <!--fp32, fp16 mixed precision, bf16 mixed precision, bf16 non-mixed precision, fp16 non-mixed precision, fp8 mixed precision -->
-
-#### Speeds, Sizes, Times [optional]
-
-<!-- This section provides information about throughput, start/end time, checkpoint size if relevant, etc. -->
-
-[More Information Needed]
-
-## Evaluation
-
-<!-- This section describes the evaluation protocols and provides the results. -->
-
-### Testing Data, Factors & Metrics
-
-#### Testing Data
-
-<!-- This should link to a Dataset Card if possible. -->
-
-[More Information Needed]
-
-#### Factors
-
-<!-- These are the things the evaluation is disaggregating by, e.g., subpopulations or domains. -->
-
-[More Information Needed]
-
-#### Metrics
-
-<!-- These are the evaluation metrics being used, ideally with a description of why. -->
-
-[More Information Needed]
-
-### Results
-
-[More Information Needed]
-
-#### Summary
-
-
-
-## Model Examination [optional]
-
-<!-- Relevant interpretability work for the model goes here -->
-
-[More Information Needed]
-
-## Environmental Impact
-
-<!-- Total emissions (in grams of CO2eq) and additional considerations, such as electricity usage, go here. Edit the suggested text below accordingly -->
-
-Carbon emissions can be estimated using the [Machine Learning Impact calculator](https://mlco2.github.io/impact#compute) presented in [Lacoste et al. (2019)](https://arxiv.org/abs/1910.09700).
-
-- **Hardware Type:** [More Information Needed]
-- **Hours used:** [More Information Needed]
-- **Cloud Provider:** [More Information Needed]
-- **Compute Region:** [More Information Needed]
-- **Carbon Emitted:** [More Information Needed]
-
-## Technical Specifications [optional]
-
-### Model Architecture and Objective
-
-[More Information Needed]
-
-### Compute Infrastructure
-
-[More Information Needed]
-
-#### Hardware
-
-[More Information Needed]
-
-#### Software
-
-[More Information Needed]
-
-## Citation [optional]
-
-<!-- If there is a paper or blog post introducing the model, the APA and Bibtex information for that should go in this section. -->
-
-**BibTeX:**
-
-[More Information Needed]
-
-**APA:**
-
-[More Information Needed]
-
-## Glossary [optional]
-
-<!-- If relevant, include terms and calculations in this section that can help readers understand the model or model card. -->
-
-[More Information Needed]
-
-## More Information [optional]
-
-[More Information Needed]
-
-## Model Card Authors [optional]
-
-[More Information Needed]
-
-## Model Card Contact
-
-[More Information Needed]
-### Framework versions
-
-- PEFT 0.17.1
+El modelo alcanzó una pérdida de validación (`eval_loss`) de *0.7617* y una perplejidad final de *2.13*, logrando un desempeño robusto y estable durante el proceso de ajuste fino.  
+La siguiente figura muestra la evolución de la pérdida durante las etapas de entrenamiento y validación del modelo `LoRA r=32`:
+
+![Curva de entrenamiento LoRA r=32](https://huggingface.co/medranojl/MistralLoRAr32/resolve/main/assets/training_curve_r32.png)
+
+*Figura 1.* Evolución de la pérdida de entrenamiento y validación del modelo MistralLoRA r=32.
+
+
+## Evaluación en generación de texto
+
+El modelo fue evaluado aplicando distintas estrategias de decodificación sobre el conjunto de prueba (`test`) del dataset `MedQuAD`.  
+Las métricas empleadas incluyen `ROUGE-L` (coherencia semántica), `BERTScore` (factualidad), `Distinct-n` (diversidad léxica) y `Repetition Ratio` (repetición de n-gramas).  
+
+| Estrategia | tokens_len | distinct_1 | distinct_2 | repetition_r3 | rougeL | bertscore_f1 |
+|:------------|:-----------:|:-----------:|:-----------:|:---------------:|:--------:|:---------------:|
+| `beam_4` | 255.83 | 0.5779 | 0.9026 | 0.0000 | 0.2232 | 0.8580 |
+| `topp_0.9` | 255.67 | 0.6140 | 0.9123 | 0.0033 | 0.2432 | 0.8571 |
+| `temp_1.2` | 256.00 | 0.6185 | 0.9203 | 0.0020 | 0.2223 | 0.8520 |
+| `greedy` | 255.67 | 0.5587 | 0.8730 | 0.0079 | 0.2078 | 0.8514 |
+| `temp_0.9` | 256.33 | 0.6417 | 0.9243 | 0.0007 | 0.2240 | 0.8497 |
+| `topk_50` | 256.00 | 0.6490 | 0.9229 | 0.0007 | 0.2166 | 0.8491 |
+
+### Interpretación de los resultados
+
+El análisis comparativo evidencia cómo la estrategia de decodificación influye directamente en las métricas de coherencia, diversidad y factualidad.  
+Cada enfoque equilibra de forma diferente la precisión semántica y la variedad léxica, lo cual permite adaptar el modelo según los objetivos específicos de generación textual.
+
+- La estrategia `beam_4` obtuvo el valor más alto en `BERTScore`, indicando mayor factualidad y consistencia semántica.  
+- La configuración `topp_0.9` alcanzó la puntuación más alta en `ROUGE-L`, mostrando una coherencia superior con las respuestas de referencia.  
+- El método `temp_0.9` destacó por su mayor diversidad léxica (`distinct-2 = 0.9243`), generando textos más variados y naturales.  
+- Nuevamente, `beam_4` mostró la menor tasa de repetición (`repetition_r3 = 0.0000`), evidenciando estabilidad gramatical y control sintáctico.  
+
+En conjunto, los resultados confirman que `MistralLoRA r=32` ofrece un equilibrio sólido entre precisión, coherencia y diversidad, destacando especialmente en escenarios que requieren respuestas informativas con bajo nivel de redundancia.
+
+## Usos
+
+### Uso directo
+El modelo está diseñado para tareas de *preguntas y respuestas médicas (Q&A)* basadas en texto, generando respuestas fundamentadas en información validada.  
+Ejemplos de aplicación:
+- Asistentes médicos virtuales  
+- Sistemas de recuperación de información en salud  
+- Plataformas educativas en medicina  
+
+### Uso en proyectos derivados
+El modelo puede ser empleado como base para experimentos de generación médica multilingüe o tareas derivadas como resumen de textos, extracción de términos clínicos o clasificación semántica.
+
+### Usos no recomendados
+El modelo fue desarrollado con fines académicos y **no debe utilizarse** para:
+- Emitir diagnósticos o recomendaciones clínicas  
+- Sustituir la evaluación de un profesional médico  
+- Procesar información sensible o confidencial  
+
+## Sesgos, riesgos y limitaciones
+Aunque el dataset `MedQuAD` contiene información verificada, las respuestas generadas pueden incluir errores o interpretaciones parciales.  
+El modelo depende fuertemente del contexto de la pregunta y no reemplaza la revisión médica humana.
+
+### Recomendaciones
+- Supervisar todas las salidas generadas antes de su uso en entornos reales.  
+- Emplear el modelo únicamente con fines de investigación o educativos.  
+- Validar las respuestas con fuentes médicas oficiales.  
+
+
+## Ejemplo de uso
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
+
+model = AutoModelForCausalLM.from_pretrained("medranojl/MistralLoRAr32", device_map="auto", torch_dtype=torch.float16)
+tokenizer = AutoTokenizer.from_pretrained("medranojl/MistralLoRAr32")
+
+prompt = "What are the main complications of diabetes?"
+inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=150)
+print(tokenizer.decode(outputs[0], skip_special_tokens=True))
+```
+
+## Training/Validation Metrics (LoRA r=32) — 2025-11-02 07:57:11
+
+| Step | Epoch | Training Loss | Validation Loss |
+|-----:|-----:|--------------:|----------------:|
+| 100 | 0.07 | 0.916400 |  |
+| 200 | 0.14 | 0.797800 |  |
+| 300 | 0.21 | 0.821200 |  |
+| 400 | 0.28 | 0.806400 |  |
+| 500 | 0.35 | 0.799300 |  |
+| 600 | 0.42 | 0.780000 |  |
+| 700 | 0.49 | 0.775600 |  |
+| 800 | 0.56 | 0.743300 |  |
+| 900 | 0.63 | 0.757700 |  |
+| 1000 | 0.70 | 0.757400 |  |
+| 1100 | 0.77 | 0.756400 |  |
+| 1200 | 0.84 | 0.743100 |  |
+| 1300 | 0.91 | 0.747400 |  |
+| 1400 | 0.98 | 0.745200 |  |
+| 1436 | 1.00 |  | 0.721013 |
+| 1500 | 1.04 | 0.686400 |  |
+| 1600 | 1.11 | 0.672900 |  |
+| 1700 | 1.18 | 0.655800 |  |
+| 1800 | 1.25 | 0.680600 |  |
+| 1900 | 1.32 | 0.645500 |  |
+| 2000 | 1.39 | 0.684100 |  |
+| 2100 | 1.46 | 0.653600 |  |
+| 2200 | 1.53 | 0.645700 |  |
+| 2300 | 1.60 | 0.634400 |  |
+| 2400 | 1.67 | 0.671100 |  |
+| 2500 | 1.74 | 0.638600 |  |
+| 2600 | 1.81 | 0.633000 |  |
+| 2700 | 1.88 | 0.637000 |  |
+| 2800 | 1.95 | 0.623200 |  |
+| 2872 | 2.00 |  | 0.700253 |
+| 2900 | 2.02 | 0.620200 |  |
+| 3000 | 2.09 | 0.533300 |  |
+| 3100 | 2.16 | 0.559500 |  |
+| 3200 | 2.23 | 0.553000 |  |
+| 3300 | 2.30 | 0.571400 |  |
+| 3400 | 2.37 | 0.543400 |  |
+| 3500 | 2.44 | 0.542100 |  |
+| 3600 | 2.51 | 0.547500 |  |
+| 3700 | 2.58 | 0.530400 |  |
+| 3800 | 2.65 | 0.514300 |  |
+| 3900 | 2.72 | 0.549400 |  |
+| 4000 | 2.79 | 0.550600 |  |
+| 4100 | 2.86 | 0.534900 |  |
+| 4200 | 2.93 | 0.545300 |  |
+| 4300 | 2.99 | 0.520600 |  |
+| 4308 | 3.00 |  | 0.710358 |
+
+---
+# MistralLoRA — MedQuAD (LoRA r=32)
+## Resultados del entrenamiento
+| Aspecto | Descripción |
+|----------|-------------|
+| Modelo base | `mistralai/Mistral-7B-Instruct-v0.3` |
+| Dataset | `lavita/MedQuAD` (división 70/15/15) |
+| Quantization | 4-bit NF4 (*bitsandbytes*) |
+| Método | LoRA (r=32, α=64, dropout=0.05) |
+| Objetivo | Generación de respuestas médicas breves y verificables |
+| Mejor métrica (`eval_loss`) | 0.700253 |
+| Perplejidad final | 2.04 |
